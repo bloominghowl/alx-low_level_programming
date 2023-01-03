@@ -1,31 +1,31 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * _strspn - gets the length of a prefix substring.
  * @s: character to print
  * @accept: character
  *
- * Return: i
+ * Return: The number of bytes in s consisting only of bytes from accept
  */
 
 unsigned int _strspn(char *s, char *accept)
 {
-	int count;
+	unsigned int bytes = 0;
+	int index;
 
-	while (*s != '\0')
+	while (*s)
 	{
-		while (*accept != '\0')
+		for (index = 0; accept[index]; index++)
 		{
-			if (*s == *accept)
+			if (*s == accept[index])
+			{
+				bytes++;
 				break;
-			count++;
-			accept++;
-
-			s++;
+			}
+			else if (accept[index + 1] == '\0')
+				return (bytes);
 		}
-		if (*accept == '\0')
-			break;
+		s++;
 	}
-	return (count + 1);
+	return (bytes);
 }
