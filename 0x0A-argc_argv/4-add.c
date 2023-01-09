@@ -1,60 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <strlng.h>
 
 /**
- * check_num - adds positive numbers
- * @str: array str
+ * _isnumber - checks if string is a number
+ * @s: string
  *
- * Return: Alwyas 0 (Success)
+ * Return: On success 1.
+ * If not a number, 0 is returned.
  */
-
-int check_num(char *str)
-{
-	unsigned int count;
-
-	count = 0;
-	while (count < strlen(str))
+int _isnumber(char *s)
 	{
-		if (!isdigit(str[count]))
+	int i, check, d;
+	
+	i = 0, d = 0, check = 1;
+	if (*s == '-')
+		i++;
+	for (; *(s + i) != 0; i++)
+	{
+		d = isdigit(*(s + i));
+		if (d == 0)
 		{
-			return (0);
+			check = 0;
+			break;
 		}
-		count++;
 	}
-	return (1);
+	return (check);
 }
-
 /**
- * main - print the name of the program
- * @argc: count arguments
- * @argv: arguments
+ * main - Entry point
  *
- * Return: Always 0
+ * @argc: Counts the number of parameters that go into main
+ * @argv: Pointer of array of pointers containing strings entering main
+ * Return: Always 0 (Success)
  */
-
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	int count;
-	int str_to_int;
-	int sum = 0;
-
-	count = 1;
-	while (count < argc)
+	int i, n, ex;
+	
+	ex = 0, n = 0;
+	if (argc > 1)
 	{
-	if (check_num(argv[count]))
+	for (i = 1; i < argc; i++)
 	{
-	str_to_int = atoi(argv[count]);
-	sum += str_to_int;
+	if (_isnumber(argv[i]))
+		n += atoi(argv[i]);
+		else
+			ex = 1;
 	}
+	}
+	if (ex == 0)
+		printf("%i\n", n);
 	else
-	{
-	printf("Error\n");
-	return (1);
-	}
-	count++;
-	}
-	printf("%d\n", sum);
-	return (0);
+		printf("%s\n", "Error");
+	return (ex);
 }
