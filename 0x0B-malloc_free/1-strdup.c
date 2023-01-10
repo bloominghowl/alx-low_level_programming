@@ -1,34 +1,32 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * _strdup - returns a pointer to a newly allocated space in memory, which
- * contains a copy of the string given as a paremeter.
+ * _strdup - a function to copy a string on a new allocated memory
+ * area
  * @str: string to copy
  *
- * Return: Pointer
+ * Return: a pointer to the copied string
  */
 
 char *_strdup(char *str)
 {
-	int l, i;
-	char *s;
+	char *pointeur;
+	int i;
+	int count = 0;
 
 	if (str == NULL)
-		return (0);
-	
-	l = 0;
-	while (*(str + l))
-		l++;
-	s = malloc(sizeof(char) * l + l);
+	return (NULL);
+	while (*(str + count))
+		count++;
 
-		if (s == 0)
-			return (0);
-
-	for (i = 0; i <= l; i++)
+	if (pointeur == NULL)
+		return (NULL);
+	i = 0;
+	while (i <= count)
 	{
-		*(s + l) = *(str + i);
+		*(pointeur + i) = *(str + i);
+		i++;
 	}
-	return (s);
+	return (pointeur);
 }
