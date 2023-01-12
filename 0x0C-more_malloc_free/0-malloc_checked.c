@@ -6,8 +6,7 @@
  * malloc_checked - allocates memory using malloc.
  * @b: size
  *
- * Return: Pointer to allocated memory or normal process
-  termination
+ * Return: Pointer to allocated memory or terminate
  * with a status value of 98
  */
 
