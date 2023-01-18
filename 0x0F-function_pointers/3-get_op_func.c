@@ -1,9 +1,8 @@
 #include "3-calc.h"
-#include <stddef.h>
-#include <stdio.h>
 
 /**
  * get_op_func - Calls function to perform arithmetic operation
+ * on two numbers
  * @s: operator passed as argument to program
  *
  * Return: Nothing
@@ -23,8 +22,12 @@ int (*get_op_func(char *s))(int, int)
 	int i;
 
 	i = 0;
-	while ((ops[i].op[0] != s[0]) && (i < 5))
-		i++;
+	while (ops[i].op)
+	{
+		if (strcmp(ops[i].op, s) == 0)
+		return (ops[i].f);
+			i++;
+	}
 
-	return (ops[i].f);
+	return (NULL);
 }
