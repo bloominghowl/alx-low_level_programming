@@ -32,7 +32,7 @@ void tint(va_list list)
  */
 void tfloat(va_list list)
 {
-	printf("%f", va_arg(list, float));
+	printf("%f", va_arg(list, double));
 }
 
 /**
