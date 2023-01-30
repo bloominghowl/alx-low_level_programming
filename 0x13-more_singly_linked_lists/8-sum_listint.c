@@ -8,6 +8,7 @@
  * Return: sum of all the data (n) of a listint_t
  * linked list, 0 if listis empty
  */
+
 int sum_listint(listint_t *head)
 {
 	int add = 0;
