@@ -10,6 +10,7 @@
  *
  * Return: Number of elements in list
  */
+
 size_t listint_len(const listint_t *h)
 {
 	unsigned int size = 0;
