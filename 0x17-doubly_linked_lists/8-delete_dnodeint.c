@@ -1,48 +1,45 @@
 #include "lists.h"
-
 /**
- * insert_dnodeint_at_index - insert a node at an index
- * @h: head of list
- * @idx: the index
- * @n: the int to put into the new node
- * Return: address of new node or NULL
+ * delete_dnodeint_at_index - Delete node at nth
+ * @head: Pointer to direction of the head
+ * @index: The position in de ll
+ * Return: 1 if it succeeded or -1 if it failed
  */
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	/* declarations */
-	dlistint_t *location;
-	dlistint_t *new = malloc(sizeof(dlistint_t));
+	dlistint_t *p1, *res_mem = *head;
+	unsigned int counter = 0;
 
-	/* check for NULL */
-	if (!h || !new)
-		return (new ? free(new), NULL : NULL);
-	/* assign some things to new */
-	location = *h;
-	new->n = n;
-	/* if index is 0 */
-	if (!idx)
+	if (head == NULL || *head == NULL)
+		return (-1);
+
+	if (index == 0)
 	{
-		new->prev = NULL;
-		new->next = location ? location : NULL;
-		if (location)
-		{
-			location->prev = new;
-		}
-		return (*h = new);
+		*head = res_mem->next;
+		if (res_mem->next == NULL)
+			return (-1);
+		res_mem->next->prev = NULL;
+		free(res_mem);
+		return (1);
 	}
-	/* otherwise, move to place before index and install new node */
-	for (; location; location = location->next, idx--)
+
+	while (counter < index)
 	{
-		if (idx - 1 == 0)
-		{
-			new->prev = location;
-			new->next = location->next;
-			if (new->next)
-				new->next->prev = new;
-			location->next = new;
-			return (new);
-		}
+		if (res_mem->next == NULL)
+			return (-1);
+		res_mem = res_mem->next;
+		counter++;
 	}
-	/* if all else fails, free new & return NULL */
-	return (free(new), NULL);
+	res_mem->prev->next = res_mem->next;
+	if (res_mem->next)
+		res_mem->next->prev = res_mem->prev;
+	if (res_mem->next == NULL)
+	{
+		p1 = res_mem->prev;
+		p1->next = NULL;
+		free(res_mem);
+		return (1);
+	}
+	free(res_mem);
+	return (1);
 }
