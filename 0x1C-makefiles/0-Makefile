@@ -1,9 +1,8 @@
-# Rule: all
-all: school
+# This file automates the compilation of a C program
 
-# Rule to build the school executable
-school: main.c
-	gcc -o school main.c
+all: main.c school.c message.h
+	gcc main.c school.c -o school
+
 # OR
 # all:
 #	gcc main.c school.c -o school
