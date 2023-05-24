@@ -1,0 +1,14 @@
+# Variables
+CC = gcc
+SRC = main.c utility.c
+
+# Rule: all
+all: school
+
+# Rule to build the school executable
+school: $(SRC)
+	$(CC) -o school $(SRC)
+
+# Clean rule
+clean:
+	rm -f school
