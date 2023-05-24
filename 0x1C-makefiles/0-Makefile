@@ -1,7 +1,9 @@
 # Rule: all
-all: main.c school.c message.h
-	gcc main.c school.c -o school
+all: school
 
-# Clean rule
-clean:
-	rm -f school
+# Rule to build the school executable
+school: main.c
+	gcc -o school main.c
+# OR
+# all:
+#	gcc main.c school.c -o school
