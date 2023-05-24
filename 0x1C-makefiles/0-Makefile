@@ -1,26 +1,8 @@
-# Variable definitions
-CC = gcc
-CFLAGS = -Wall -Werror
-LDFLAGS =
+# This file automates the compilation of a C program
 
-# Rule: target dependencies
-#     command
+all: main.c school.c message.h
+	gcc main.c school.c -o school
 
-# Default rule
-all: main
-
-# Rule to build the main target
-main: main.o utility.o
-    $(CC) $(LDFLAGS) -o main main.o utility.o
-
-# Rule to build the main.o object file
-main.o: main.c utility.h
-    $(CC) $(CFLAGS) -c main.c
-
-# Rule to build the utility.o object file
-utility.o: utility.c utility.h
-    $(CC) $(CFLAGS) -c utility.c
-
-# Clean rule
-clean:
-    rm -f main main.o utility.o
+# OR
+# all:
+#	gcc main.c school.c -o school
