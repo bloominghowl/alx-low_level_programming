@@ -1,14 +1,9 @@
-# Variables
+# This file automates the compilation of a C program
+
 CC = gcc
-SRC = main.c utility.c
+SRC = main.c school.c
+OBJ = $(SRC:%.c=%.o) # OR OBJ = $(SRC:.c=.o)
+NAME = school
 
-# Rule: all
-all: school
-
-# Rule to build the school executable
-school: $(SRC)
-	$(CC) -o school $(SRC)
-
-# Clean rule
-clean:
-	rm -f school
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
