@@ -1,14 +1,13 @@
-# Variables
 CC = gcc
-SRC = main.c utility.c
+SRC = school.c main.c
 
-# Rule: all
-all: school
+all:
+	$(CC) $(SRC) -o school
 
-# Rule to build the school executable
-school: $(SRC)
-	$(CC) -o school $(SRC)
+# OR
+# all: $(SRC)
+#	$(CC) $(SRC) -o school
 
-# Clean rule
-clean:
-	rm -f school
+# OR
+# all: $(SRC) message.h
+#       $(CC) $(SRC) -o school
