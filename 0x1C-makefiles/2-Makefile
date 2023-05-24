@@ -18,4 +18,3 @@ $(NAME): $(OBJ)
 # Clean rule
 clean:
 	rm -f $(OBJ) $(NAME)
-
